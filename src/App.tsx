@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Home from './pages/Home';
+import MainStack from './routes/MainStack';
 
-const App = (): JSX.Element => <Home />;
+const App = (): JSX.Element => <MainStack />;
 
 export default App;

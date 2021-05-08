@@ -1,12 +1,11 @@
 import React from 'react';
-import { Text } from 'react-native';
 
-import { Container } from './styles';
+import { Container, Tittle } from './styles';
 
 const Home = (): JSX.Element => {
   return (
     <Container>
-      <Text>Home</Text>
+      <Tittle>Home</Tittle>
     </Container>
   );
 };
