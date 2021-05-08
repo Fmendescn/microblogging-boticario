@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Tittle } from './styles';
 
-const Home = (): JSX.Element => {
+const Feed = (): JSX.Element => {
   return (
     <Container>
       <Tittle>Home</Tittle>
@@ -10,4 +10,4 @@ const Home = (): JSX.Element => {
   );
 };
 
-export default Home;
+export default Feed;
