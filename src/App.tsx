@@ -1,10 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 
-const App = (): JSX.Element => (
-  <View>
-    <Text>Blog</Text>
-  </View>
-);
+import Home from './pages/Home';
+
+const App = (): JSX.Element => <Home />;
 
 export default App;
