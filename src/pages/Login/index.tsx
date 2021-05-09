@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import SignIn from './components/SignIn';
-// import SignUp from './components/SignUp';
+import SignUp from './components/SignUp';
 
 import { RegularWhiteLarge } from '../../shared/texts';
 import {
@@ -11,23 +11,41 @@ import {
   TopTab,
   SwitchScreen,
   Content,
+  SwitchScreenButton,
 } from './styles';
 
-const Login = (): JSX.Element => (
-  <Container>
-    <Header>
-      <Logo />
-    </Header>
-    <TopTab>
-      <SwitchScreen>
-        <RegularWhiteLarge>LOGIN</RegularWhiteLarge>
-        <RegularWhiteLarge>SIGN UP</RegularWhiteLarge>
-      </SwitchScreen>
-      <Content>
-        <SignIn />
-      </Content>
-    </TopTab>
-  </Container>
-);
+const SCREENS = ['SignIn', 'SignUp'] as const;
+type SCREENS_TYPE = typeof SCREENS[number];
+
+const Login = (): JSX.Element => {
+  const [selectedScreen, setSelectedScreen] = useState<SCREENS_TYPE>('SignIn');
+
+  return (
+    <Container>
+      <Header>
+        <Logo />
+      </Header>
+      <TopTab>
+        <SwitchScreen>
+          <SwitchScreenButton
+            onPress={() => setSelectedScreen('SignIn')}
+            isSelected={selectedScreen === 'SignIn'}
+          >
+            <RegularWhiteLarge>LOGIN</RegularWhiteLarge>
+          </SwitchScreenButton>
+          <SwitchScreenButton
+            onPress={() => setSelectedScreen('SignUp')}
+            isSelected={selectedScreen === 'SignUp'}
+          >
+            <RegularWhiteLarge>SIGN UP</RegularWhiteLarge>
+          </SwitchScreenButton>
+        </SwitchScreen>
+        <Content>
+          {selectedScreen === 'SignIn' ? <SignIn /> : <SignUp />}
+        </Content>
+      </TopTab>
+    </Container>
+  );
+};
 
 export default Login;
