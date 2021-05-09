@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PostCard from './components/PostCard';
+
 import { SectionTittle } from '../../shared/texts';
 import {
   Container,
@@ -22,6 +24,7 @@ const Feed = (): JSX.Element => {
           <SignOutIcon />
         </SignOutButton>
       </Header>
+      <PostCard />
     </Container>
   );
 };
