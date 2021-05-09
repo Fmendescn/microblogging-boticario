@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PostCard from '../../components/PostCard';
+
 import { SectionTittle } from '../../shared/texts';
 import { Container, Header } from './styles';
 
