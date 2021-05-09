@@ -16,6 +16,8 @@
 		7327C2BA4D6B43159E96527A /* AvenirLTStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = C8615004BD03496A8DE8A840 /* AvenirLTStd-Book.otf */; };
 		53BF990C80954B588B832FEB /* AvenirLTStd-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = D300E75472264F1A803776C2 /* AvenirLTStd-Roman.otf */; };
 		AD5B423B70AD4B1EAD5411F6 /* Metropolis-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1257CCD9E4964FDD85FCE82D /* Metropolis-Regular.otf */; };
+		80A074C8C22B4CA0AED91AC0 /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48B918EE42334003B0B89A3C /* Metropolis-Medium.otf */; };
+		659B90B012E5487E9D3AFCEE /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B265A2BB34C74359B22CA5DB /* Metropolis-SemiBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		C8615004BD03496A8DE8A840 /* AvenirLTStd-Book.otf */ = {isa = PBXFileReference; name = "AvenirLTStd-Book.otf"; path = "../src/assets/fonts/AvenirLTStd-Book.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D300E75472264F1A803776C2 /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; name = "AvenirLTStd-Roman.otf"; path = "../src/assets/fonts/AvenirLTStd-Roman.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1257CCD9E4964FDD85FCE82D /* Metropolis-Regular.otf */ = {isa = PBXFileReference; name = "Metropolis-Regular.otf"; path = "../src/assets/fonts/Metropolis-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		48B918EE42334003B0B89A3C /* Metropolis-Medium.otf */ = {isa = PBXFileReference; name = "Metropolis-Medium.otf"; path = "../src/assets/fonts/Metropolis-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B265A2BB34C74359B22CA5DB /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; name = "Metropolis-SemiBold.otf"; path = "../src/assets/fonts/Metropolis-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 				C8615004BD03496A8DE8A840 /* AvenirLTStd-Book.otf */,
 				D300E75472264F1A803776C2 /* AvenirLTStd-Roman.otf */,
 				1257CCD9E4964FDD85FCE82D /* Metropolis-Regular.otf */,
+				48B918EE42334003B0B89A3C /* Metropolis-Medium.otf */,
+				B265A2BB34C74359B22CA5DB /* Metropolis-SemiBold.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -239,6 +245,8 @@
 				7327C2BA4D6B43159E96527A /* AvenirLTStd-Book.otf in Resources */,
 				53BF990C80954B588B832FEB /* AvenirLTStd-Roman.otf in Resources */,
 				AD5B423B70AD4B1EAD5411F6 /* Metropolis-Regular.otf in Resources */,
+				80A074C8C22B4CA0AED91AC0 /* Metropolis-Medium.otf in Resources */,
+				659B90B012E5487E9D3AFCEE /* Metropolis-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -57,6 +57,8 @@
 		<string>AvenirLTStd-Book.otf</string>
 		<string>AvenirLTStd-Roman.otf</string>
 		<string>Metropolis-Regular.otf</string>
+		<string>Metropolis-Medium.otf</string>
+		<string>Metropolis-SemiBold.otf</string>
 	</array>
 </dict>
 </plist>
