@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PostCard from './components/PostCard';
+import PostCard from '../../components/PostCard';
 
 import { SectionTittle } from '../../shared/texts';
 import {
@@ -24,7 +24,11 @@ const Feed = (): JSX.Element => {
           <SignOutIcon />
         </SignOutButton>
       </Header>
-      <PostCard />
+      <PostCard
+        author="Pedro Henrique"
+        date="1 hrs atrás"
+        message="E ai rapaziada, to chegando com os refri"
+      />
     </Container>
   );
 };
