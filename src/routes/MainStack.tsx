@@ -12,7 +12,7 @@ const MainStack = (): JSX.Element => {
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode="none">
-        <Stack.Screen name="Login" component={Login} />
+        {/* <Stack.Screen name="Login" component={Login} /> */}
         <Stack.Screen name="TabBar" component={TabBar} />
       </Stack.Navigator>
     </NavigationContainer>
