@@ -6,11 +6,11 @@ import { signOutIcon } from '../../shared/images';
 export const Container = styled.View`
   flex: 1;
   background: ${colors.white};
-  padding: 22px;
 `;
 
 export const Header = styled.View`
-  margin: 16px 0 32px 0;
+  margin-top: 16px;
+  padding: 22px;
   flex-direction: row;
   justify-content: space-between;
 `;
@@ -38,4 +38,8 @@ export const SignOutIcon = styled.Image.attrs({
   width: 30px;
 
   margin-left: 22px;
+`;
+
+export const PostsList = styled.FlatList`
+  padding: 8px;
 `;

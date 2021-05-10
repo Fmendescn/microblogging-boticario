@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { getDifferenceBetweenDates } from '../../shared/utils';
+
 import {
   CardMessage,
   ViewCard,
@@ -41,7 +43,7 @@ const PostCard = ({
         <Message>{message}</Message>
         <TimeView>
           <ClockIcon />
-          <IntervalTime>{date}</IntervalTime>
+          <IntervalTime>{getDifferenceBetweenDates(date)}</IntervalTime>
         </TimeView>
       </ViewInformation>
     </ViewCard>
