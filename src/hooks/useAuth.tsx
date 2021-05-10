@@ -1,11 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect,
-  useContext,
-  createContext,
-  ReactNode,
-} from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 import Snackbar from 'react-native-snackbar';
 
@@ -15,11 +8,7 @@ import {
   storeUserInfo,
   getUserInfo,
   deleteUserInfo,
-} from '../../shared/utils';
-
-interface AuthProviderProps {
-  children: ReactNode;
-}
+} from '../shared/utils';
 
 interface SignInProps {
   email: string;
@@ -34,19 +23,7 @@ interface IUseAuth {
   signOut(): void;
 }
 
-const AuthContext = createContext<IUseAuth>({} as IUseAuth);
-
-export function useAuth(): IUseAuth {
-  const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error('UserAuth requires an AuthProvider');
-  }
-
-  return context;
-}
-
-export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
+const useAuth = (): IUseAuth => {
   const [userStored, setUserStored] = useState<string>('');
   const [isGettingUser, setIsGettingUser] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -85,17 +62,13 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     setUserStored('');
   }, []);
 
-  return (
-    <AuthContext.Provider
-      value={{
-        signIn,
-        signOut,
-        userStored,
-        signInLoading: isLoading,
-        isGettingUser,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  return {
+    signIn,
+    signOut,
+    userStored,
+    signInLoading: isLoading,
+    isGettingUser,
+  };
 };
+
+export default useAuth;

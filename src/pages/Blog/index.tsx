@@ -1,22 +1,42 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import PostCard from '../../components/PostCard';
 
 import { SectionTittle } from '../../shared/texts';
-import { Container, Header } from './styles';
+import { Container, Header, NewsList } from './styles';
 
-const Blog = (): JSX.Element => (
-  <Container>
-    <Header>
-      <SectionTittle>Últimas novidades</SectionTittle>
-    </Header>
-    <PostCard
-      author="O boticario"
-      message="Além disso, nossos funcionários e familiares receberão kits de proteção. Afinal, o cuidado começa aqui dentro, né?"
-      date="2 dias atrás"
-      coverImage="https://images.unsplash.com/photo-1603993097397-89c963e325c7?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    />
-  </Container>
-);
+import useBlog from '../../hooks/useBlog';
+
+const Blog = (): JSX.Element => {
+  const { newsList } = useBlog();
+
+  const renderItem = useCallback(
+    ({ item, index }) => (
+      <PostCard
+        key={index}
+        author={item?.user?.name}
+        date={item?.message?.created_at}
+        message={item?.message?.content}
+        coverImage={item?.user?.profile_picture}
+      />
+    ),
+    [],
+  );
+
+  return (
+    <Container>
+      <Header>
+        <SectionTittle>Últimas novidades</SectionTittle>
+      </Header>
+      <NewsList
+        data={newsList}
+        keyExtractor={(item: any, index: number) =>
+          item?.message?.created_at + index
+        }
+        renderItem={renderItem}
+      />
+    </Container>
+  );
+};
 
 export default Blog;

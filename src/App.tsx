@@ -1,15 +1,18 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 
-import AppProvider from './hooks';
+import { Provider } from 'react-redux';
+
 import MainStack from './routes/MainStack';
+
+import store from './store';
 
 const App = (): JSX.Element => (
   <>
     <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-    <AppProvider>
+    <Provider store={store}>
       <MainStack />
-    </AppProvider>
+    </Provider>
   </>
 );
 
