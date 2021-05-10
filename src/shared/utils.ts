@@ -13,9 +13,7 @@ export const storeUserInfo = async (name: string): Promise<void> => {
   try {
     const jsonValue = JSON.stringify(name);
     await AsyncStorage.setItem('userInfo', jsonValue);
-  } catch (e) {
-    // saving error
-  }
+  } catch (e) {}
 };
 
 export const getUserInfo = async (): Promise<string | null> => {
@@ -23,7 +21,6 @@ export const getUserInfo = async (): Promise<string | null> => {
     const jsonValue = await AsyncStorage.getItem('userInfo');
     return jsonValue !== null ? JSON.parse(jsonValue) : null;
   } catch (e) {
-    // error reading value
     return null;
   }
 };
@@ -34,5 +31,18 @@ export const deleteUserInfo = async (): Promise<boolean | null> => {
     return true;
   } catch (e) {
     return null;
+  }
+};
+
+export const getDifferenceBetweenDates = (date: string): string => {
+  try {
+    const formatedDate = new Date(date);
+    const today = Date.now();
+    const diffInMillisecond = Math.abs(today - formatedDate);
+    const diffDays = Math.ceil(diffInMillisecond / (1000 * 60 * 60 * 24));
+
+    return diffDays >= 1 ? `${diffDays} dias` : 'Menos de 1 dia';
+  } catch (e) {
+    return '';
   }
 };

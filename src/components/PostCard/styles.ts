@@ -4,9 +4,10 @@ import colors from '../../shared/colors';
 import { clockIcon } from '../../shared/images';
 
 export const CardMessage = styled.View`
+  margin: 0 4px 14px 4px;
   padding: 16px;
   border-radius: 12px;
-  background: #fff;
+  background: ${colors.white};
 `;
 
 export const ViewCard = styled.View`
