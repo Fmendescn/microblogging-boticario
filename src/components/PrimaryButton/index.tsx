@@ -1,15 +1,26 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { ActivityIndicator, TouchableOpacityProps } from 'react-native';
 
 import { RegularWhiteLarge } from '../../shared/texts';
-import { Container } from './styles';
+import { Container, LoadingSpinner } from './styles';
 
-interface PrimaryButtonProps {
+interface PrimaryButtonProps extends TouchableOpacityProps {
   label: string;
+  isLoading: boolean;
 }
 
-const PrimaryButton = ({ label }: PrimaryButtonProps): JSX.Element => (
-  <Container>
-    <RegularWhiteLarge>{label}</RegularWhiteLarge>
+const PrimaryButton = ({
+  label,
+  isLoading,
+  ...props
+}: PrimaryButtonProps): JSX.Element => (
+  <Container {...props} disabled={isLoading}>
+    {isLoading ? (
+      <LoadingSpinner />
+    ) : (
+      <RegularWhiteLarge>{label}</RegularWhiteLarge>
+    )}
   </Container>
 );
 

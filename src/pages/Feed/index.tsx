@@ -2,6 +2,8 @@ import React from 'react';
 
 import PostCard from '../../components/PostCard';
 
+import { useAuth } from '../../hooks/context/Auth';
+
 import { SectionTittle } from '../../shared/texts';
 import {
   Container,
@@ -13,6 +15,8 @@ import {
 } from './styles';
 
 const Feed = (): JSX.Element => {
+  const { signOut } = useAuth();
+
   return (
     <Container>
       <Header>
@@ -20,7 +24,7 @@ const Feed = (): JSX.Element => {
           <GreetingMessage>Olá, Francisco!</GreetingMessage>
           <SectionTittle>Últimas mensagens</SectionTittle>
         </Messages>
-        <SignOutButton>
+        <SignOutButton onPress={() => signOut()}>
           <SignOutIcon />
         </SignOutButton>
       </Header>

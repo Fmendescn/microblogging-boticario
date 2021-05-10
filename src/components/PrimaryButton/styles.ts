@@ -12,4 +12,7 @@ export const Container = styled.TouchableOpacity`
   align-items: center;
 `;
 
-export default Container;
+export const LoadingSpinner = styled.ActivityIndicator.attrs({
+  color: colors.white,
+  size: 'large',
+})``;
