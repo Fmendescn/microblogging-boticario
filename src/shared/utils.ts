@@ -1,4 +1,8 @@
+/* eslint-disable consistent-return */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const DEFAULT_IMAGE =
+  'https://gkpb.com.br/wp-content/uploads/2020/08/novo-logo-o-boticario-2020.jpg';
 
 export function validateEmail(email: string): boolean {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -44,5 +48,18 @@ export const getDifferenceBetweenDates = (date: string): string => {
     return diffDays >= 1 ? `${diffDays} dias` : 'Menos de 1 dia';
   } catch (e) {
     return '';
+  }
+};
+
+export const getImageURL = async (url: string): Promise<string | undefined> => {
+  try {
+    await fetch(url).then(res => {
+      if (res.status === 404) {
+        return DEFAULT_IMAGE;
+      }
+      return url;
+    });
+  } catch (error) {
+    return DEFAULT_IMAGE;
   }
 };

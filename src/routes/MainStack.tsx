@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import TabBar from './TabBar';
 import Login from '../pages/Login';
 
-import { useAuth } from '../hooks/context/Auth';
+import useAuth from '../hooks/useAuth';
 
 const Stack = createStackNavigator();
 

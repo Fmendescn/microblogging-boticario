@@ -11,3 +11,7 @@ export const Container = styled.View`
 export const Header = styled.View`
   margin: 16px 0 32px 0;
 `;
+
+export const NewsList = styled.FlatList`
+  padding: 8px;
+`;

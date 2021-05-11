@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import InputText from '../../../../components/InputText';
 import PrimaryButton from '../../../../components/PrimaryButton';
 
-import { useAuth } from '../../../../hooks/context/Auth';
+import useAuth from '../../../../hooks/useAuth';
 
 import { SectionTittle, SectionDescription } from '../../../../shared/texts';
 import { Container, Header, Form, Footer } from './styles';

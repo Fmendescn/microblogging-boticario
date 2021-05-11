@@ -1,8 +1,8 @@
+/* eslint-disable camelcase */
 import React, { useCallback } from 'react';
-
 import PostCard from '../../components/PostCard';
 
-import { useAuth } from '../../hooks/context/Auth';
+import useAuth from '../../hooks/useAuth';
 
 import { SectionTittle } from '../../shared/texts';
 import {
@@ -15,52 +15,94 @@ import {
   PostsList,
 } from './styles';
 
-interface IPosts {
-  author: string;
-  content: string;
-  date: string;
+interface IUser {
+  name: string;
+  profile_picture?: string;
 }
 
-const posts: IPosts[] = [
+interface IMessage {
+  content: string;
+  created_at: string;
+}
+
+interface INews {
+  user: IUser;
+  message: IMessage;
+}
+
+const posts: INews[] = [
   {
-    author: 'Marina Lopes',
-    content: 'Bom dia pessoal, como é q vcs tão?',
-    date: '2021-04-05T14:48:00.000Z',
+    user: {
+      name: 'Marina Lopes',
+    },
+    message: {
+      content: 'Bom dia pessoal, como é q vcs tão?',
+      created_at: '2021-04-05T14:48:00.000Z',
+    },
   },
   {
-    author: 'Bruno Silva',
-    content: 'Animado com a v0.64 do React Native, Hermes agora para iOS',
-    date: '2021-05-04T14:48:00.000Z',
+    user: {
+      name: 'Bruno Silva',
+    },
+    message: {
+      content: 'Animado com a v0.64 do React Native, Hermes agora para iOS',
+      created_at: '2021-05-04T14:48:00.000Z',
+    },
   },
   {
-    author: 'Helena Cruz',
-    content: 'Bom dia pessoal, como é q vcs tão?',
-    date: '2021-05-05T14:48:00.000Z',
+    user: {
+      name: 'Linus Torvalds',
+    },
+    message: {
+      content:
+        'Teoria e prática as vezes entram em conflito. E Quando isso acontece, a teoria perde, toda vez',
+      created_at: '2021-05-05T14:48:00.000Z',
+    },
   },
   {
-    author: 'Fernanda Kelly',
-    content: 'Bom dia pessoal, como é q vcs tão?',
-    date: '2021-04-29T14:48:00.000Z',
+    user: {
+      name: 'Fernanda Kelly',
+    },
+    message: {
+      content: 'Bom dia pessoal, como é q vcs tão?',
+      created_at: '2021-04-29T14:48:00.000Z',
+    },
   },
   {
-    author: 'Marina Lopes',
-    content: 'Bom dia pessoal, como é q vcs tão?',
-    date: '2021-04-05T14:48:00.000Z',
+    user: {
+      name: 'Marina Lopes',
+    },
+    message: {
+      content: 'Bom dia pessoal, como é q vcs tão?',
+      created_at: '2021-04-05T14:48:00.000Z',
+    },
   },
   {
-    author: 'Bruno Silva',
-    content: 'Animado com a v0.64 do React Native, Hermes agora para iOS',
-    date: '2021-05-04T14:48:00.000Z',
+    user: {
+      name: 'Bruno Silva',
+    },
+    message: {
+      content: 'Animado com a v0.64 do React Native, Hermes agora para iOS',
+      created_at: '2021-05-04T14:48:00.000Z',
+    },
   },
   {
-    author: 'Helena Cruz',
-    content: 'Bom dia pessoal, como é q vcs tão?',
-    date: '2021-05-05T14:48:00.000Z',
+    user: {
+      name: 'Helena Cruz',
+    },
+    message: {
+      content: 'Bom dia pessoal, como é q vcs tão?',
+      created_at: '2021-05-05T14:48:00.000Z',
+    },
   },
   {
-    author: 'Fernanda Kelly',
-    content: 'Bom dia pessoal, como é q vcs tão?',
-    date: '2021-04-29T14:48:00.000Z',
+    user: {
+      name: 'Fernanda Kelly',
+    },
+    message: {
+      content: 'Bom dia pessoal, como é q vcs tão?',
+      created_at: '2021-04-29T14:48:00.000Z',
+    },
   },
 ];
 
@@ -71,9 +113,9 @@ const Feed = (): JSX.Element => {
     ({ item, index }) => (
       <PostCard
         key={index}
-        author={item?.author}
-        date={item?.date}
-        message={item?.content}
+        author={item?.user?.name}
+        date={item?.message?.created_at}
+        message={item?.message?.content}
       />
     ),
     [],
@@ -92,7 +134,9 @@ const Feed = (): JSX.Element => {
       </Header>
       <PostsList
         data={posts}
-        keyExtractor={(item: any, index: number) => item.date + index}
+        keyExtractor={(item: any, index: number) =>
+          item?.message?.created_at + index
+        }
         renderItem={renderItem}
       />
     </Container>
