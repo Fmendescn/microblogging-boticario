@@ -22,7 +22,7 @@ interface INews {
 }
 
 interface IUseBlog {
-  newsList: INews;
+  newsList: INews[];
 }
 
 function useBlog(): IUseBlog {
