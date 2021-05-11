@@ -51,10 +51,11 @@ const posts: INews[] = [
   },
   {
     user: {
-      name: 'Helena Cruz',
+      name: 'Linus Torvalds',
     },
     message: {
-      content: 'Bom dia pessoal, como é q vcs tão?',
+      content:
+        'Teoria e prática as vezes entram em conflito. E Quando isso acontece, a teoria perde, toda vez',
       created_at: '2021-05-05T14:48:00.000Z',
     },
   },

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 import colors from '../../shared/colors';
-import { clockIcon } from '../../shared/images';
+import { clockIcon, logo } from '../../shared/images';
 
 export const CardMessage = styled.View`
   margin: 0 4px 14px 4px;
@@ -57,6 +57,7 @@ export const IntervalTime = styled.Text`
 
 export const CoverImage = styled.Image.attrs({
   reziseMode: 'contain',
+  defaultSource: logo,
 })`
   height: 141px;
   width: 92px;

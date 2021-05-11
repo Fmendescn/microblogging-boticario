@@ -1,6 +1,9 @@
 import { useCallback, useState, useEffect } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import Snackbar from 'react-native-snackbar';
+import { Creators as AuthActions } from '../store/ducks/auth';
 
 import {
   validateEmail,
@@ -24,48 +27,53 @@ interface IUseAuth {
 }
 
 const useAuth = (): IUseAuth => {
-  const [userStored, setUserStored] = useState<string>('');
   const [isGettingUser, setIsGettingUser] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const dispatch = useDispatch();
+  const userInfo = useSelector(state => state?.auth?.user);
+
+  // console.log(userInfo);
   useEffect(() => {
     async function getStoredData() {
       const user = await getUserInfo();
 
-      setUserStored(user ?? '');
+      dispatch(AuthActions.signIn(user));
       setIsGettingUser(false);
     }
 
     getStoredData();
-  }, []);
+  }, [dispatch]);
 
-  const signIn = useCallback((user: SignInProps) => {
-    setIsLoading(true);
+  const signIn = useCallback(
+    (user: SignInProps) => {
+      setIsLoading(true);
 
-    setTimeout(() => {
-      if (validateEmail(user.email) && validatePassword(user.password)) {
-        storeUserInfo(user.email);
-        setUserStored(user.email);
-      } else {
-        Snackbar.show({
-          text: 'Email/Senha inválidos',
-          duration: Snackbar.LENGTH_SHORT,
-        });
-      }
-      setIsLoading(false);
-    }, 1000);
-  }, []);
+      setTimeout(() => {
+        if (validateEmail(user.email) && validatePassword(user.password)) {
+          storeUserInfo(user.email);
+          dispatch(AuthActions.signIn(user.email));
+        } else {
+          Snackbar.show({
+            text: 'Email/Senha inválidos',
+            duration: Snackbar.LENGTH_SHORT,
+          });
+        }
+        setIsLoading(false);
+      }, 1000);
+    },
+    [dispatch],
+  );
 
   const signOut = useCallback(async () => {
     await deleteUserInfo();
-
-    setUserStored('');
-  }, []);
+    dispatch(AuthActions.signIn(null));
+  }, [dispatch]);
 
   return {
     signIn,
     signOut,
-    userStored,
+    userStored: userInfo,
     signInLoading: isLoading,
     isGettingUser,
   };
