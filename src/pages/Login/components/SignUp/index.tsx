@@ -31,7 +31,7 @@ const SignUp = (): JSX.Element => {
         />
       </Form>
       <Footer>
-        <PrimaryButton label="LOGAR" />
+        <PrimaryButton isLoading={false} label="LOGAR" />
       </Footer>
     </Container>
   );

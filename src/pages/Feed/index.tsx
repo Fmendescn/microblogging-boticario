@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable camelcase */
 import React, { useCallback } from 'react';
 import PostCard from '../../components/PostCard';
@@ -18,7 +19,7 @@ import {
 
 const Feed = (): JSX.Element => {
   const { signOut } = useAuth();
-  const { listPosts } = usePosts();
+  const { listPosts, readPost, deletePost } = usePosts();
 
   const renderItem = useCallback(
     ({ item, index }) => (
@@ -27,9 +28,12 @@ const Feed = (): JSX.Element => {
         author={item?.user?.name}
         date={item?.message?.created_at}
         message={item?.message?.content}
+        id={item?.user?._id}
+        deletePost={() => deletePost(index)}
+        readPost={() => readPost(index)}
       />
     ),
-    [],
+    [deletePost, readPost],
   );
 
   return (

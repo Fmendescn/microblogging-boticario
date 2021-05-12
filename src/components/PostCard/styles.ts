@@ -25,7 +25,6 @@ export const Author = styled.Text`
 `;
 
 export const Message = styled.Text`
-  /* flex: 1; */
   font-family: 'Metropolis-Regular';
   font-size: 14px;
   color: ${colors.black};
@@ -63,4 +62,28 @@ export const CoverImage = styled.Image.attrs({
   width: 92px;
   border-radius: 8px;
   margin-right: 12px;
+`;
+
+export const Footer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const PostActions = styled.View`
+  flex-direction: row;
+`;
+
+export const ActionButton = styled.TouchableOpacity`
+  margin-left: 14px;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const IconAction = styled.Image.attrs({
+  resizeMode: 'contain',
+})`
+  height: 24px;
+  width: 24px;
 `;

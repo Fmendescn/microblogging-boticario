@@ -43,7 +43,7 @@ const TabBar = (): JSX.Element => {
           title: undefined,
           tabBarIcon: () => <CreatePostIcon />,
         }}
-        name="Postar"
+        name="CreatePost"
         component={CreatePost}
       />
       <Tab.Screen

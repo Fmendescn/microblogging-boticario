@@ -1,11 +1,13 @@
 /* eslint-disable camelcase */
 import { useCallback, useEffect } from 'react';
 
+import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Creators as FeedActions } from '../store/ducks/feed';
 
 interface IUser {
+  _id: string;
   name: string;
   profile_picture?: string;
 }
@@ -23,6 +25,7 @@ interface IPost {
 const posts: IPost[] = [
   {
     user: {
+      _id: '0',
       name: 'Marina Lopes',
     },
     message: {
@@ -30,25 +33,27 @@ const posts: IPost[] = [
       created_at: '2021-04-05T14:48:00.000Z',
     },
   },
-  // {
-  //   user: {
-  //     name: 'Bruno Silva',
-  //   },
-  //   message: {
-  //     content: 'Animado com a v0.64 do React Native, Hermes agora para iOS',
-  //     created_at: '2021-05-04T14:48:00.000Z',
-  //   },
-  // },
-  // {
-  //   user: {
-  //     name: 'Linus Torvalds',
-  //   },
-  //   message: {
-  //     content:
-  //       'Teoria e prática as vezes entram em conflito. E Quando isso acontece, a teoria perde, toda vez',
-  //     created_at: '2021-05-05T14:48:00.000Z',
-  //   },
-  // },
+  {
+    user: {
+      _id: '1',
+      name: 'Bruno Silva',
+    },
+    message: {
+      content: 'Animado com a v0.64 do React Native, Hermes agora para iOS',
+      created_at: '2021-05-04T14:48:00.000Z',
+    },
+  },
+  {
+    user: {
+      _id: '2',
+      name: 'Linus Torvalds',
+    },
+    message: {
+      content:
+        'Teoria e prática as vezes entram em conflito. E Quando isso acontece, a teoria perde, toda vez',
+      created_at: '2021-05-05T14:48:00.000Z',
+    },
+  },
   // {
   //   user: {
   //     name: 'Fernanda Kelly',
@@ -97,13 +102,20 @@ const posts: IPost[] = [
 ];
 
 interface IUsePosts {
+  postReaded: IPost;
   listPosts: IPost[];
   publicate(publicationText: string): void;
+  readPost(postIndex: number): void;
+  deletePost(postIndex: number): void;
+  editPost(message: string): void;
 }
 
 function usePosts(): IUsePosts {
+  const { navigate } = useNavigation();
   const dispatch = useDispatch();
   const listPosts = useSelector(state => state?.feed?.posts);
+  const postReaded = useSelector(state => state?.feed.postReaded);
+  const indexPostReaded = useSelector(state => state?.feed.indexReaded);
 
   useEffect(() => {
     dispatch(FeedActions.setPosts(posts));
@@ -113,6 +125,7 @@ function usePosts(): IUsePosts {
     (publicationText: string) => {
       const content = {
         user: {
+          _id: '100',
           name: 'Francisco',
         },
         message: {
@@ -121,11 +134,50 @@ function usePosts(): IUsePosts {
         },
       };
       dispatch(FeedActions.addPost(content));
+      navigate('Feed');
     },
-    [dispatch],
+    [dispatch, navigate],
   );
 
-  return { listPosts, publicate };
+  const readPost = useCallback(
+    (postIndex: number) => {
+      dispatch(FeedActions.readPost(listPosts[postIndex], postIndex));
+      navigate('CreatePost');
+    },
+    [dispatch, listPosts, navigate],
+  );
+
+  const deletePost = useCallback(
+    (postIndex: number) => {
+      const updatedPosts = [...listPosts];
+
+      updatedPosts.splice(postIndex, 1);
+      dispatch(FeedActions.setPosts(updatedPosts));
+    },
+    [dispatch, listPosts],
+  );
+
+  const editPost = useCallback(
+    (message: string) => {
+      const copyPosts = [...listPosts];
+      const editedPost = { ...postReaded };
+
+      editedPost.message = {
+        content: message,
+        created_at: '2021-05-11T14:48:00.000Z',
+      };
+      if (indexPostReaded) {
+        copyPosts[indexPostReaded] = editedPost;
+
+        dispatch(FeedActions.setPosts(copyPosts));
+        dispatch(FeedActions.readPost(null, null));
+        navigate('Feed');
+      }
+    },
+    [dispatch, listPosts, postReaded, indexPostReaded, navigate],
+  );
+
+  return { listPosts, publicate, readPost, postReaded, deletePost, editPost };
 }
 
 export default usePosts;
