@@ -44,7 +44,7 @@ const CreatePost = (): JSX.Element => {
       <PrimaryButton
         onPress={handlePublicatePost}
         isLoading={false}
-        label="PUBLICAR"
+        label={postReaded ? 'ATUALIZAR' : 'PUBLICAR'}
       />
     </Container>
   );

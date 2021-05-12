@@ -19,7 +19,7 @@ import {
 const SCREENS = ['SignIn', 'SignUp'] as const;
 type SCREENS_TYPE = typeof SCREENS[number];
 
-const Login = (): JSX.Element => {
+const AuthScreen = (): JSX.Element => {
   const [selectedScreen, setSelectedScreen] = useState<SCREENS_TYPE>('SignIn');
   const { userIsRegistered } = useAuth();
 
@@ -57,4 +57,4 @@ const Login = (): JSX.Element => {
   );
 };
 
-export default Login;
+export default AuthScreen;

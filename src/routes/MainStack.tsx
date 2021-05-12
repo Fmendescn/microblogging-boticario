@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import TabBar from './TabBar';
-import Login from '../pages/Login';
+import AuthScreen from '../pages/AuthScreen';
 
 import useAuth from '../hooks/useAuth';
 
@@ -23,7 +23,7 @@ const MainStack = (): JSX.Element => {
         {userStored ? (
           <Stack.Screen name="TabBar" component={TabBar} />
         ) : (
-          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="AuthScreen" component={AuthScreen} />
         )}
       </Stack.Navigator>
     </NavigationContainer>

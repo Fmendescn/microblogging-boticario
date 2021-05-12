@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Creators as FeedActions } from '../store/ducks/feed';
 
+import useAuth from './useAuth';
+
 interface IUser {
   _id: string;
   name: string;
@@ -112,6 +114,7 @@ interface IUsePosts {
 
 function usePosts(): IUsePosts {
   const { navigate } = useNavigation();
+  const { userStored } = useAuth();
   const dispatch = useDispatch();
   const listPosts = useSelector(state => state?.feed?.posts);
   const postReaded = useSelector(state => state?.feed.postReaded);
@@ -126,17 +129,18 @@ function usePosts(): IUsePosts {
       const content = {
         user: {
           _id: '100',
-          name: 'Francisco',
+          name: userStored ?? 'Usuário',
         },
         message: {
           content: publicationText,
           created_at: '2021-05-11T14:48:00.000Z',
         },
       };
+
       dispatch(FeedActions.addPost(content));
       navigate('Feed');
     },
-    [dispatch, navigate],
+    [dispatch, navigate, userStored],
   );
 
   const readPost = useCallback(
@@ -166,7 +170,7 @@ function usePosts(): IUsePosts {
         content: message,
         created_at: '2021-05-11T14:48:00.000Z',
       };
-      if (indexPostReaded) {
+      if (indexPostReaded || indexPostReaded === 0) {
         copyPosts[indexPostReaded] = editedPost;
 
         dispatch(FeedActions.setPosts(copyPosts));
