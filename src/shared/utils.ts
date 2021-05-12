@@ -45,7 +45,7 @@ export const getDifferenceBetweenDates = (date: string): string => {
     const diffInMillisecond = Math.abs(today - formatedDate);
     const diffDays = Math.ceil(diffInMillisecond / (1000 * 60 * 60 * 24));
 
-    return diffDays >= 1 ? `${diffDays} dias` : 'Menos de 1 dia';
+    return diffDays > 1 ? `${diffDays} dias` : 'Menos de 1 dia';
   } catch (e) {
     return '';
   }

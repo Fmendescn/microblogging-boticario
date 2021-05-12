@@ -124,6 +124,20 @@ function usePosts(): IUsePosts {
     dispatch(FeedActions.setPosts(posts));
   }, [dispatch]);
 
+  const sortPosts = useCallback(() => {
+    listPosts.sort((post: IPost) => {
+      const dateToCompare = new Date(post?.message?.created_at);
+      const today = new Date();
+      return dateToCompare.getTime() - today.getTime();
+    });
+  }, [listPosts]);
+
+  useEffect(() => {
+    if (listPosts) {
+      sortPosts();
+    }
+  }, [listPosts, sortPosts]);
+
   const publicate = useCallback(
     (publicationText: string) => {
       const content = {
@@ -133,7 +147,7 @@ function usePosts(): IUsePosts {
         },
         message: {
           content: publicationText,
-          created_at: '2021-05-11T14:48:00.000Z',
+          created_at: new Date(),
         },
       };
 
@@ -168,7 +182,7 @@ function usePosts(): IUsePosts {
 
       editedPost.message = {
         content: message,
-        created_at: '2021-05-11T14:48:00.000Z',
+        created_at: new Date(),
       };
       if (indexPostReaded || indexPostReaded === 0) {
         copyPosts[indexPostReaded] = editedPost;
