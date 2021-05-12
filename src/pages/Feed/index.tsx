@@ -18,7 +18,7 @@ import {
 } from './styles';
 
 const Feed = (): JSX.Element => {
-  const { signOut } = useAuth();
+  const { signOut, userStored } = useAuth();
   const { listPosts, readPost, deletePost } = usePosts();
 
   const renderItem = useCallback(
@@ -40,7 +40,7 @@ const Feed = (): JSX.Element => {
     <Container>
       <Header>
         <Messages>
-          <GreetingMessage>Olá, Francisco!</GreetingMessage>
+          <GreetingMessage>Olá{`, ${userStored}`}!</GreetingMessage>
           <SectionTittle>Últimas mensagens</SectionTittle>
         </Messages>
         <SignOutButton onPress={() => signOut()}>

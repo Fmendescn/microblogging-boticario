@@ -18,12 +18,18 @@ interface SignInProps {
   password: string;
 }
 
+interface SignUpProps extends SignInProps {
+  name: string;
+}
+
 interface IUseAuth {
-  signInLoading: boolean;
+  isLoading: boolean;
   userStored: string;
   isGettingUser: boolean;
+  userIsRegistered: boolean;
   signIn(user: SignInProps): void;
   signOut(): void;
+  signUp(register: SignUpProps): void;
 }
 
 const useAuth = (): IUseAuth => {
@@ -32,8 +38,8 @@ const useAuth = (): IUseAuth => {
 
   const dispatch = useDispatch();
   const userInfo = useSelector(state => state?.auth?.user);
+  const registerInfo = useSelector(state => state?.auth?.userRegistered);
 
-  // console.log(userInfo);
   useEffect(() => {
     async function getStoredData() {
       const user = await getUserInfo();
@@ -45,17 +51,55 @@ const useAuth = (): IUseAuth => {
     getStoredData();
   }, [dispatch]);
 
+  const authenticateUser = useCallback(
+    (user: SignInProps) => {
+      if (
+        user?.email === registerInfo?.email &&
+        user?.password === registerInfo?.password
+      ) {
+        dispatch(AuthActions.signIn(registerInfo?.name));
+        storeUserInfo(registerInfo?.name);
+      } else {
+        Snackbar.show({
+          text: 'Email/Senha inválidos',
+          duration: Snackbar.LENGTH_SHORT,
+        });
+      }
+    },
+    [registerInfo, dispatch],
+  );
+
   const signIn = useCallback(
     (user: SignInProps) => {
       setIsLoading(true);
 
       setTimeout(() => {
-        if (validateEmail(user.email) && validatePassword(user.password)) {
-          storeUserInfo(user.email);
-          dispatch(AuthActions.signIn(user.email));
+        authenticateUser(user);
+        setIsLoading(false);
+      }, 1000);
+    },
+    [authenticateUser],
+  );
+
+  const signUp = useCallback(
+    (register: SignUpProps) => {
+      setIsLoading(true);
+
+      setTimeout(() => {
+        if (
+          validateEmail(register?.email) &&
+          validatePassword(register?.password) &&
+          register?.name.length >= 0
+        ) {
+          dispatch(AuthActions.signUp(register));
+
+          Snackbar.show({
+            text: 'Cadastro realizado com sucesso, logue na sua conta',
+            duration: Snackbar.LENGTH_SHORT,
+          });
         } else {
           Snackbar.show({
-            text: 'Email/Senha inválidos',
+            text: 'Dados inválidos',
             duration: Snackbar.LENGTH_SHORT,
           });
         }
@@ -73,8 +117,10 @@ const useAuth = (): IUseAuth => {
   return {
     signIn,
     signOut,
+    signUp,
     userStored: userInfo,
-    signInLoading: isLoading,
+    isLoading,
+    userIsRegistered: !!registerInfo,
     isGettingUser,
   };
 };

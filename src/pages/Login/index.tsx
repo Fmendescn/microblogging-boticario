@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+
+import useAuth from '../../hooks/useAuth';
 
 import { RegularWhiteLarge } from '../../shared/texts';
 import {
@@ -19,6 +21,13 @@ type SCREENS_TYPE = typeof SCREENS[number];
 
 const Login = (): JSX.Element => {
   const [selectedScreen, setSelectedScreen] = useState<SCREENS_TYPE>('SignIn');
+  const { userIsRegistered } = useAuth();
+
+  useEffect(() => {
+    if (userIsRegistered) {
+      setSelectedScreen('SignIn');
+    }
+  }, [userIsRegistered]);
 
   return (
     <Container>

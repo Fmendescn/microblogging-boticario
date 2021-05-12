@@ -13,7 +13,7 @@ const SignIn = (): JSX.Element => {
   const [password, setPassword] = useState<string>('');
   const [hidePassword, setHidePassword] = useState<boolean>(true);
 
-  const { signIn, signInLoading } = useAuth();
+  const { signIn, isLoading } = useAuth();
 
   const handleHidePasswordChange = useCallback((value: boolean) => {
     setHidePassword(value);
@@ -50,7 +50,7 @@ const SignIn = (): JSX.Element => {
       </Form>
       <Footer>
         <PrimaryButton
-          isLoading={signInLoading}
+          isLoading={isLoading}
           onPress={handleLogin}
           label="LOGAR"
         />
