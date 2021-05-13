@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import SplashScreen from 'react-native-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -12,6 +13,12 @@ const Stack = createStackNavigator();
 
 const MainStack = (): JSX.Element => {
   const { userStored, isGettingUser } = useAuth();
+
+  useEffect(() => {
+    if (!isGettingUser) {
+      SplashScreen.hide();
+    }
+  }, [isGettingUser]);
 
   if (isGettingUser) {
     return <></>;
