@@ -4,7 +4,7 @@ import colors from '../../shared/colors';
 import { clockIcon, logo } from '../../shared/images';
 
 export const CardMessage = styled.View`
-  margin: 0 4px 14px 4px;
+  margin: 4px 4px 14px 4px;
   padding: 16px;
   border-radius: 12px;
   background: ${colors.white};
