@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,21 +22,26 @@ interface INews {
 }
 
 interface IUseBlog {
+  isLoading: boolean;
   newsList: INews[];
 }
 
 function useBlog(): IUseBlog {
   const dispatch = useDispatch();
   const newsList = useSelector(state => state?.blog?.news);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     axios
       .get('https://gb-mobile-app-teste.s3.amazonaws.com/data.json')
-      .then(response => dispatch(BlogActions.addNews(response?.data?.news)))
-      .catch(error => console.log(error));
+      .then(response => {
+        dispatch(BlogActions.addNews(response?.data?.news));
+        setIsLoading(false);
+      })
+      .catch(error => setIsLoading(false));
   }, [dispatch]);
 
-  return { newsList };
+  return { newsList, isLoading };
 }
 
 export default useBlog;
