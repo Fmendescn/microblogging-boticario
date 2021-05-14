@@ -36,16 +36,10 @@ const AuthScreen = (): JSX.Element => {
       </Header>
       <TopTab>
         <SwitchScreen>
-          <SwitchScreenButton
-            onPress={() => setSelectedScreen('SignIn')}
-            isSelected={selectedScreen === 'SignIn'}
-          >
+          <SwitchScreenButton onPress={() => setSelectedScreen('SignIn')}>
             <RegularWhiteLarge>LOGIN</RegularWhiteLarge>
           </SwitchScreenButton>
-          <SwitchScreenButton
-            onPress={() => setSelectedScreen('SignUp')}
-            isSelected={selectedScreen === 'SignUp'}
-          >
+          <SwitchScreenButton onPress={() => setSelectedScreen('SignUp')}>
             <RegularWhiteLarge>SIGN UP</RegularWhiteLarge>
           </SwitchScreenButton>
         </SwitchScreen>

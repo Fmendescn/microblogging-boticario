@@ -18,4 +18,5 @@ export const Form = styled.View`
 
 export const Footer = styled.View`
   flex: 1;
+  margin-top: 32px;
 `;

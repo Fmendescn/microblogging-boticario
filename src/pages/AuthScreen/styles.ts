@@ -3,11 +3,7 @@ import styled from 'styled-components/native';
 import { logo } from '../../shared/images';
 import colors from '../../shared/colors';
 
-interface SwitchScreenButtonProps {
-  isSelected: boolean;
-}
-
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
   background: ${colors.white};
 `;
@@ -46,6 +42,4 @@ export const Content = styled.View`
   border-top-right-radius: 28px;
 `;
 
-export const SwitchScreenButton = styled.TouchableOpacity<SwitchScreenButtonProps>`
-  opacity: ${props => (props.isSelected ? 1 : 0.3)};
-`;
+export const SwitchScreenButton = styled.TouchableOpacity``;
