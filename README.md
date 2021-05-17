@@ -1,5 +1,7 @@
 # Microblogging Boticário
 
+![Preview-Screens](https://github.com/Fmendescn/microblogging-boticario/blob/main/screenshots/screenshot.png)
+
 ## Index
 
   - [🔖&nbsp; About](#-about)
