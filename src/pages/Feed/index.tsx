@@ -41,7 +41,7 @@ const Feed = (): JSX.Element => {
       <Header>
         <Messages>
           <GreetingMessage>Olá{`, ${userStored}`}!</GreetingMessage>
-          <SectionTittle>Últimas mensagens</SectionTittle>
+          <SectionTittle>Suas últimas mensagens</SectionTittle>
         </Messages>
         <SignOutButton onPress={() => signOut()}>
           <SignOutIcon />
